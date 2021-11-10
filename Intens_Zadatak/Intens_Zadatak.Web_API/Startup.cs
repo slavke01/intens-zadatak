@@ -1,3 +1,5 @@
+using Intens_Zadatak.DataBase;
+using Intens_Zadatak.Database_Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Intens_Zadatak.Services;
+using Intens_Zadatak.Services.Interfaces;
 
 namespace Intens_Zadatak.Web_API
 {
@@ -27,11 +31,18 @@ namespace Intens_Zadatak.Web_API
         {
 
             services.AddControllers();
+          
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Intens_Zadatak.Web_API", Version = "v1" });
             });
+            services.AddTransient<IntensDbContext, IntensDbContext>();
+            services.AddTransient<ISkillOperations, SkillOperations>();
+            services.AddTransient<ICandidateOperations, CandidateOperations>();
+            services.AddTransient<ISkillService, SkillService>();
+            services.AddTransient<ICandidateService, CandidateService>();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Intens_Zadatak.Web_API
 {
@@ -13,3 +13,4 @@ namespace Intens_Zadatak.Web_API
         public string Summary { get; set; }
     }
 }
+
