@@ -34,5 +34,19 @@ namespace Intens_Zadatak.DataBase
             retVal= this.context.Skills.ToList();
             return retVal;
         }
+
+        public List<Skill> GetAvailableSkills(int candidateId)
+        {
+            List<Skill> retVal = new List<Skill>();
+            List<Skill> all = this.context.Skills.ToList();
+            Candidate candidate = this.context.Candidates.Find(candidateId);
+            if (candidate == null)
+            {
+                throw new Exception("There is no candidate with given ID");
+            }
+
+            retVal = all.Except(candidate.Skills).ToList();
+            return retVal;
+        }
     }
 }

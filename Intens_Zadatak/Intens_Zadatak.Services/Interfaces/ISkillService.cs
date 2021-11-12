@@ -12,5 +12,6 @@ namespace Intens_Zadatak.Services.Interfaces
 
         void AddNewSkill(Skill skill);
         List<Skill> GetAllSkills();
+        List<Skill> GetAvailableSkills(int candidateId);
     }
 }

@@ -12,6 +12,7 @@ namespace Intens_Zadatak.Database_Interfaces
 
         List<Skill> GetAllSkills();
 
+        List<Skill> GetAvailableSkills(int candidateId);
         void AddNewSkill(Skill skill);
     }
 }

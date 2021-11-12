@@ -1,5 +1,6 @@
 ﻿using Intens_Zadatak.Models;
 using Intens_Zadatak.Services.Interfaces;
+using Intens_Zadatak.Web_API.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -63,6 +64,7 @@ namespace Intens_Zadatak.Web_API.Controllers
         }
 
 
+
         [HttpPost("addnewcandidate")]
         public IActionResult AddNewcandidate(Candidate candidate) 
         {
@@ -76,6 +78,23 @@ namespace Intens_Zadatak.Web_API.Controllers
             }
             return Ok();
         }
+
+        [HttpPost("searchcandidates")]
+        public IActionResult SearchCandidates([FromBody] SearchDTO searchparams) 
+        {
+            List<Candidate> retVal = new List<Candidate>();
+
+            try
+            {
+                retVal = this.service.SearchCandidates(searchparams.CandidateName,searchparams.SkillName);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+            return Ok(retVal);
+        }
+
         [HttpGet("getallcandidates")]
         public IActionResult GetAllCandidates()
         {

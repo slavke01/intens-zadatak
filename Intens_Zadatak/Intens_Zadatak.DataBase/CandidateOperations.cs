@@ -80,5 +80,45 @@ namespace Intens_Zadatak.DataBase
             candidate.Skills.Remove(toremove);
             context.SaveChanges();
         }
+
+        public List<Candidate> SearchCandidates(string candidateName, string skillName)
+        {
+            List<Candidate> allCandidates = this.context.Candidates.ToList();
+            List<Candidate> candidatesNamed = new List<Candidate>();
+            List<Candidate> retVal = new List<Candidate>();
+            if (candidateName != "")
+            {
+
+                candidatesNamed = allCandidates.Where(s => s.Name == candidateName).ToList();
+            }
+            else
+            {
+                candidatesNamed = allCandidates;
+            }
+
+            if (candidatesNamed.Count == 0) 
+            {
+                throw new Exception("No candidates with a given name");
+            }
+
+            if (skillName != "")
+            {
+                foreach (Candidate c in candidatesNamed)
+                {
+                    if (c.Skills.Any(s => s.Name == skillName) == true)
+                    {
+                        retVal.Add(c);
+
+                    }
+                }
+            }
+            else 
+            {
+                retVal = candidatesNamed;
+            }
+
+
+            return retVal;
+        }
     }
 }

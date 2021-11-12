@@ -28,5 +28,14 @@ namespace Intens_Zadatak.Services
            List<Skill> retval= this.operations.GetAllSkills();
            return retval;
         }
+
+        public List<Skill> GetAvailableSkills(int candidateId)
+        {
+            if (candidateId <= 0)
+            {
+                throw new Exception("Wrong candidate ID. Must be a positive number.");
+            }
+            return this.operations.GetAvailableSkills(candidateId);
+        }
     }
 }

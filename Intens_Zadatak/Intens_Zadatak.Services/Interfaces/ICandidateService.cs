@@ -14,5 +14,6 @@ namespace Intens_Zadatak.Services.Interfaces
         void AddSkillToCandidate(int candidateId,int skillId);
         void RemoveSkillFromCandidate(int candidateId, int skillId);
         void RemoveCandidate(int candidateId);
+        List<Candidate> SearchCandidates(string candidateName, string skillName);
     }
 }

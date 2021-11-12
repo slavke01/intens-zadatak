@@ -37,6 +37,23 @@ namespace Intens_Zadatak.Web_API.Controllers
             return Ok();
         }
 
+        [HttpGet("getavailableskills/{candidateId}")]
+        public IActionResult GetAvailableSkills([FromRoute] int candidateId) 
+        {
+            List<Skill> retVal = new List<Skill>();
+            try
+            {
+                retVal = this.service.GetAvailableSkills(candidateId);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+
+            return Ok(retVal);
+
+        }
+
         [HttpGet("getallskills")]
         public IActionResult GetAllSkills()
         {

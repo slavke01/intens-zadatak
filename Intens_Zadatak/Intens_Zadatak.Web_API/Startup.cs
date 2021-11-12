@@ -36,6 +36,12 @@ namespace Intens_Zadatak.Web_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Intens_Zadatak.Web_API", Version = "v1" });
             });
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddTransient<IntensDbContext, IntensDbContext>();
             services.AddTransient<ISkillOperations, SkillOperations>();
             services.AddTransient<ICandidateOperations, CandidateOperations>();
@@ -55,7 +61,7 @@ namespace Intens_Zadatak.Web_API
             }
 
             app.UseRouting();
-
+            app.UseCors("MyPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

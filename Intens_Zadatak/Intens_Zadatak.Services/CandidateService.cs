@@ -67,5 +67,10 @@ namespace Intens_Zadatak.Services
 
             this.operations.RemoveSkillFromCandidate(candidateId, skillId);
         }
+
+        public List<Candidate> SearchCandidates(string candidateName, string skillName)
+        {
+            return this.operations.SearchCandidates(candidateName, skillName);
+        }
     }
 }
