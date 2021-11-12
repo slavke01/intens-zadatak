@@ -13,12 +13,10 @@ export default function AddSkill() {
     setOpen(true);
   };
 
-  const validate=()=>{
-    if(skillName==="")
-      setDisabled(true);
-      else
-      setDisabled(false);
-  }
+  const validate = () => {
+    if (skillName === "") setDisabled(true);
+    else setDisabled(false);
+  };
   const handleClose = () => {
     setOpen(false);
     setDisabled(true);
@@ -29,7 +27,7 @@ export default function AddSkill() {
     };
 
     AddSkillMethod("http://localhost:42866/api/skill/addskill", skill);
-    window.location.reload()
+    window.location.reload();
     setOpen(false);
   };
   return (
@@ -44,9 +42,8 @@ export default function AddSkill() {
           style={{ width: 200, height: 25, marginLeft: 10, marginRight: 10 }}
           onChange={(e) => {
             setSkillName(e.target.value);
-            console.log(skillName)
+            console.log(skillName);
             validate();
-            
           }}
           type="text"
           className="in-text"

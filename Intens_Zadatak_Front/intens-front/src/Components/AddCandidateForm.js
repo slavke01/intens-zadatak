@@ -80,8 +80,14 @@ const AddCandidateForm = () => {
     formik.values.skills.push(
       event.target.value[event.target.value.length - 1]
     );
-    setAllSkills(allSkills.filter((e)=>e.skillId!==event.target.value[event.target.value.length - 1].skillId));
-    console.log(formik.values.skills)
+    setAllSkills(
+      allSkills.filter(
+        (e) =>
+          e.skillId !==
+          event.target.value[event.target.value.length - 1].skillId
+      )
+    );
+    console.log(formik.values.skills);
   };
 
   return (
@@ -142,7 +148,7 @@ const AddCandidateForm = () => {
 
       <br />
       <div>
-      <label htmlFor="name">Skills</label>
+        <label htmlFor="name">Skills</label>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"

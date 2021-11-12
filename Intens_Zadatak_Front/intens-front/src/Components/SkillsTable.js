@@ -1,12 +1,11 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 
-
 function SkillsTable(props) {
   const { rows, columns } = props;
 
   return (
-    <div style={{height:400, width:350}}>
+    <div style={{ height: 400, width: 350 }}>
       <DataGrid
         columns={columns}
         rows={rows}

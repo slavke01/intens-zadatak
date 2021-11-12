@@ -1,12 +1,11 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 
-
 function CandidatesTable(props) {
   const { rows, columns } = props;
 
   return (
-    <div style={{height:400, width:1000}}>
+    <div style={{ height: 400, width: 1000 }}>
       <DataGrid
         columns={columns}
         rows={rows}

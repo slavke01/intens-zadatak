@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import {
   GetAllCandidates,
   DeleteCandidate,
-  AddCandidateMethod
+  AddCandidateMethod,
 } from "../Services/CandidateService";
 import Button from "@mui/material/Button";
 
@@ -23,21 +23,19 @@ export default function CandidatesPage() {
     });
   }, []);
 
-  const handleSearchClick=()=>{
-    const searchparams={
-      candidateName:candidateName,
-      skillName:skillName
-
-    }
+  const handleSearchClick = () => {
+    const searchparams = {
+      candidateName: candidateName,
+      skillName: skillName,
+    };
     const data = AddCandidateMethod(
-      "http://localhost:42866/api/candidate/searchcandidates/",searchparams
+      "http://localhost:42866/api/candidate/searchcandidates/",
+      searchparams
     );
     data.then((res) => {
       setRows(res);
     });
-
-    
-  }
+  };
   const handleDeleteClick = (event, param) => {
     event.stopPropagation();
     DeleteCandidate(
@@ -79,7 +77,7 @@ export default function CandidatesPage() {
   if (!rows) return <div>Loading...</div>;
   return (
     <div style={{ marginLeft: "20%" }}>
-      <div style={{position:"absolute",left:"20%"}}>
+      <div style={{ position: "absolute", left: "20%" }}>
         <div>
           <label>Candidate Name:</label>
           <input
@@ -91,7 +89,7 @@ export default function CandidatesPage() {
             className="in-text"
           />
         </div>
-        <div style={{marginTop:10}}>
+        <div style={{ marginTop: 10 }}>
           <label>Skill Name:</label>
           <input
             style={{ width: 200, height: 25, marginLeft: 55, marginRight: 10 }}
@@ -102,9 +100,9 @@ export default function CandidatesPage() {
             className="in-text"
           />
         </div>
-        <Button style={{left:"40%"}} onClick={handleSearchClick}>
-            Search
-          </Button>
+        <Button style={{ left: "40%" }} onClick={handleSearchClick}>
+          Search
+        </Button>
       </div>
       <div style={{ position: "absolute", marginTop: 70, marginLeft: 40 }}>
         <AddCandidate />

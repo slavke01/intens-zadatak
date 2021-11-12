@@ -15,9 +15,9 @@ export default function SkillsPage() {
   }, []);
   if (!rows) return <div>Loading...</div>;
   return (
-    <div style={{marginLeft:"20%"}}>
+    <div style={{ marginLeft: "20%" }}>
       <div style={{ position: "absolute", marginTop: 40, marginLeft: 40 }}>
-        <AddSkill/>
+        <AddSkill />
       </div>
       <div style={{ position: "absolute", marginTop: 100 }}>
         <SkillsTable rows={rows} columns={columns} />

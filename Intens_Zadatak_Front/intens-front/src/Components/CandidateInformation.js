@@ -1,12 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import SkillsTable from "./SkillsTable";
 import { columns } from "../Common/skillTableConfig";
-import {ManageSkill} from "../Services/CandidateService"
-import {GetAllSkills} from "../Services/SkillService"
+import { ManageSkill } from "../Services/CandidateService";
+import { GetAllSkills } from "../Services/SkillService";
 export default function CandidateInformation(props) {
   const [open, setOpen] = useState(false);
   const { candidate } = props;
@@ -15,7 +15,8 @@ export default function CandidateInformation(props) {
 
   useEffect(() => {
     const data = GetAllSkills(
-      "http://localhost:42866/api/skill/getavailableskills/"+candidate.candidateId
+      "http://localhost:42866/api/skill/getavailableskills/" +
+        candidate.candidateId
     );
     data.then((res) => {
       setAvailableSkills(res);
@@ -32,26 +33,32 @@ export default function CandidateInformation(props) {
   const handleDeleteClick = (event, param) => {
     event.stopPropagation();
     console.log(param.row);
-    
+
     ManageSkill(
-      "http://localhost:42866/api/candidate/removeskillfromcandidate/"+candidate.candidateId+"/"+param.row.skillId
+      "http://localhost:42866/api/candidate/removeskillfromcandidate/" +
+        candidate.candidateId +
+        "/" +
+        param.row.skillId
     ).then(() => {
-      setSkills(skills.filter((row)=>row.skillId!==param.row.skillId));
-      setAvailableSkills([...availableSkills,param.row]);
+      setSkills(skills.filter((row) => row.skillId !== param.row.skillId));
+      setAvailableSkills([...availableSkills, param.row]);
     });
-   
   };
 
   const handleAddClick = (event, param) => {
     event.stopPropagation();
-    
+
     ManageSkill(
-      "http://localhost:42866/api/candidate/addskilltocandidate/"+candidate.candidateId+"/"+param.row.skillId
+      "http://localhost:42866/api/candidate/addskilltocandidate/" +
+        candidate.candidateId +
+        "/" +
+        param.row.skillId
     ).then(() => {
-      setAvailableSkills(availableSkills.filter((row)=>row.skillId!==param.row.skillId));
-      setSkills([...skills,param.row]);
+      setAvailableSkills(
+        availableSkills.filter((row) => row.skillId !== param.row.skillId)
+      );
+      setSkills([...skills, param.row]);
     });
-   
   };
   const DeleteButton = [
     {
@@ -98,14 +105,13 @@ export default function CandidateInformation(props) {
       <Button variant="outlined" onClick={handleClickOpen}>
         Candidate Information
       </Button>
-      <Dialog  open={open}  >
+      <Dialog fullWidth={true} minWidth="lg" maxWidth="lg" open={open}>
         <DialogTitle>Candidate</DialogTitle>
-        <div>
-        <SkillsTable style={{width:"500px"}} rows={skills} columns={columnsButtonDelete} />
-          <br/>
-          <SkillsTable style={{width:"500px"}} rows={availableSkills} columns={columnsButtonAdd} />
-        </div>
-        
+
+        <SkillsTable rows={skills} columns={columnsButtonDelete} />
+        <br />
+        <SkillsTable rows={availableSkills} columns={columnsButtonAdd} />
+
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>

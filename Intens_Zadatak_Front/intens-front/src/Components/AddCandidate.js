@@ -3,10 +3,10 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import AddCandidateForm from "./AddCandidateForm"
+import AddCandidateForm from "./AddCandidateForm";
 export default function Candidate() {
   const [open, setOpen] = React.useState(false);
- 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -21,7 +21,7 @@ export default function Candidate() {
       </Button>
       <Dialog open={open}>
         <DialogTitle>Candidate</DialogTitle>
-        <AddCandidateForm/>
+        <AddCandidateForm />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
