@@ -19,7 +19,7 @@ export default function SkillsPage() {
       <div style={{ position: "absolute", marginTop: 40, marginLeft: 40 }}>
         <AddSkill />
       </div>
-      <div style={{ position: "absolute", marginTop: 100 }}>
+      <div style={{ position: "absolute", marginTop: 100, width:700}}>
         <SkillsTable rows={rows} columns={columns} />
       </div>
     </div>
